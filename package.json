@@ -1,0 +1,23 @@
+{
+  "name": "bookie-frontend",
+  "private": true,
+  "packageManager": "pnpm@7.2.0",
+  "license": "MIT",
+  "author": "Percy Ma",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@kecrily/eslint-config": "^0.1.7",
+    "eslint": "^8.17.0",
+    "nuxt": "3.0.0-rc.3",
+    "typescript": "^4.7.3"
+  },
+  "eslintConfig": {
+    "extends": "@kecrily/eslint-config"
+  }
+}
