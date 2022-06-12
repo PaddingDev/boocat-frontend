@@ -5,19 +5,33 @@
   "license": "MIT",
   "author": "Percy Ma",
   "scripts": {
-    "dev": "nuxt dev",
-    "build": "nuxt build",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
     "lint": "eslint ."
   },
+  "dependencies": {
+    "vue": "^3.2.37",
+    "vue-router": "^4.0.16"
+  },
   "devDependencies": {
+    "@iconify-json/carbon": "^1.1.5",
     "@kecrily/eslint-config": "^0.1.7",
+    "@unocss/preset-icons": "^0.38.2",
+    "@unocss/reset": "^0.38.2",
+    "@vitejs/plugin-vue": "^2.3.3",
     "eslint": "^8.17.0",
-    "nuxt": "3.0.0-rc.3",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.3",
+    "unocss": "^0.38.2",
+    "unplugin-auto-import": "^0.8.7",
+    "unplugin-vue-components": "^0.19.6",
+    "vite": "^2.9.12",
+    "vite-plugin-pages": "^0.23.0",
+    "vite-plugin-vue-layouts": "^0.6.0",
+    "vite-tsconfig-paths": "^3.5.0",
+    "vue-tsc": "^0.37.3"
   },
   "eslintConfig": {
-    "extends": "@kecrily/eslint-config"
+    "extends": "@kecrily"
   }
 }
