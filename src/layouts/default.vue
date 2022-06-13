@@ -1,3 +1,7 @@
 <template>
-  <router-view />
+  <div class="mx-4">
+    <Suspense>
+      <RouterView />
+    </Suspense>
+  </div>
 </template>
