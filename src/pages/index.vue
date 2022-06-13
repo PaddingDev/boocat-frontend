@@ -1,26 +1,5 @@
 <script lang="ts" setup>
-import { $fetch } from 'ohmyfetch'
-
-interface book {
-  id?: number,
-  name: string,
-  url: string,
-  authors?: string[],
-  publishers?: string[],
-  date?: string,
-  fileType?: string,
-  language?: string,
-  fileSize?: string,
-}
-
-interface raw {
-  a?: book[]
-  z?: book[]
-  g?: book[]
-  m?: book[]
-  o?: book[]
-  b?: book[]
-}
+import { raw } from '~/composables/getBooks'
 
 const providers = {
   a: 'All',
@@ -32,7 +11,7 @@ const providers = {
 }
 
 let data:raw = $ref()
-const name = $ref('')
+const name:string = $ref()
 let load:boolean = $ref(false)
 const checked:string|string[] = $ref('a')
 
@@ -40,14 +19,7 @@ async function search() {
   load = true
   let provider = checked
   if (checked === 'a') provider = Object.keys(providers)
-  data = await $fetch(
-    '/api/AllBooks',
-    {
-      method: 'POST',
-      params: { name, provider },
-      parseResponse: JSON.parse,
-    },
-  )
+  data = await getBooks(name, provider)
   load = false
 }
 </script>

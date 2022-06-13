@@ -27,6 +27,7 @@ export default defineConfig(({ mode }) => {
       AutoImport({
         imports: ['vue', 'vue/macros'],
         dts: 'src/types/auto-imports.d.ts',
+        dirs: ['src/composables'],
       }),
       Components({
         dts: 'src/types/components.d.ts',
