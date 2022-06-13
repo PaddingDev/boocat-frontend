@@ -1,5 +1,8 @@
 <script lang="ts" setup>
+import { useDark } from '@vueuse/core'
 import { raw } from '~/composables/getBooks'
+
+useDark()
 
 const providers = {
   a: 'All',
@@ -39,7 +42,8 @@ async function search() {
     <input
       v-model="name"
       placeholder="Search..."
-      class="border-(light-800 2) p-2 my-4 rounded-lg"
+      light:border="light-800 2"
+      class="p-2 my-4 rounded-lg"
       @keydown.enter="search"
     >
   </div>
