@@ -19,6 +19,7 @@ interface error {
   source: string,
 }
 
+const platformName = ['All', 'Z-Library', 'Library Genesis', 'Mem of The World', 'Open Library', 'Online Books Page']
 const platforms = ['AllBook', 'ZLib', 'LibGen', 'Mem', 'OpenLib', 'OnlineBooks']
 let books:book[] = $ref([])
 let errors: error = $ref()
@@ -59,9 +60,9 @@ async function search() {
   </h1>
   <div class="mx-auto">
     <div class="flex-row space-x-4">
-      <div v-for="platform in platforms" :key="platform" class="flex-row">
-        <label class="mr-1">{{ platform }}</label>
-        <input v-model="used" type="radio" :value="platform">
+      <div v-for="(platform, index) in platforms" :key="platform" class="flex-row">
+        <input :id="platform" v-model="used" type="radio" :value="platform">
+        <label :for="platform" class="mr-1">{{ platformName[index] }}</label>
       </div>
     </div>
 
