@@ -57,7 +57,11 @@ async function search() {
 }
 function toString(bk : book) {
   const authors = bk.authors ? ` by ${bk.authors.join(', ')}` : ''
-  const prefix = `[${bk.fileType}/${bk.fileSize}]`
+  const prefixArr = []
+  if (bk.fileType != null) prefixArr.push(bk.fileType.toUpperCase())
+  if (bk.fileSize != null) prefixArr.push(bk.fileSize)
+  if (bk.language != null) prefixArr.push((bk.language.length > 3 ? bk.language.substring(0, 3) : bk.language).toUpperCase())
+  const prefix = `[${prefixArr.length > 0 ? prefixArr.join('/') : '~'}]`
   return `${prefix} ${bk.name}${authors}`
 }
 </script>
