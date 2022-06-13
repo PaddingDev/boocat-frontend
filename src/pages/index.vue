@@ -81,4 +81,10 @@ async function search() {
   <template v-else-if="errors">
     {{ errors.msg }}
   </template>
+  <footer>
+    <hr>
+    <p class="mx-auto">
+      Copyright &copy; Bookie 2022. Powered by Vue.js & .NET 6
+    </p>
+  </footer>
 </template>
