@@ -13,56 +13,43 @@ interface book {
   fileSize?: string,
 }
 
-interface error {
-  msg: string,
-  source: string,
+interface raw {
+  a?: book[]
+  z?: book[]
+  g?: book[]
+  m?: book[]
+  o?: book[]
+  b?: book[]
 }
 
-const platformName = ['All', 'Z-Library', 'Library Genesis', 'Mem of The World', 'Open Library', 'Online Books Page']
-const platforms = ['AllBook', 'ZLib', 'LibGen', 'Mem', 'OpenLib', 'OnlineBooks']
-let books:book[] = $ref([])
-let errors: error = $ref()
+const providers = {
+  a: 'All',
+  z: 'Z-Library',
+  g: 'Library Genesis',
+  m: 'Mem of The World',
+  o: 'Open Library',
+  b: 'Online Books Page',
+}
 
+let data:raw = $ref()
 const name = $ref('')
-const used = $ref('AllBook')
+const checked:string|string[] = $ref('a')
 
 async function search() {
   // get element which id = load
   const load = document.getElementById('load')
   if (load != null) load.style.display = 'block'
-  if (used === 'AllBook') {
-    books = []
-    for (const platform of platforms.slice(1, 5)) {
-      books.push.apply(
-        books,
-        await $fetch(`/api/${platform}`, {
-          method: 'POST',
-          params: { name },
-          parseResponse: JSON.parse,
-        }).catch((error) => {
-          errors = error.data
-        }),
-      )
-    }
-  } else {
-    books = await $fetch(`/api/${used}`, {
+  let provider = checked
+  if (checked === 'a') provider = Object.keys(providers)
+  data = await $fetch(
+    '/api/AllBooks',
+    {
       method: 'POST',
-      params: { name },
+      params: { name, provider },
       parseResponse: JSON.parse,
-    }).catch((error) => {
-      errors = error.data
-    })
-  }
+    },
+  )
   if (load != null) load.style.display = 'none'
-}
-function toString(bk : book) {
-  const authors = bk.authors ? ` by ${bk.authors.join(', ')}` : ''
-  const prefixArr = []
-  if (bk.fileType != null) prefixArr.push(bk.fileType.toUpperCase())
-  if (bk.fileSize != null) prefixArr.push(bk.fileSize)
-  if (bk.language != null) prefixArr.push((bk.language.length > 3 ? bk.language.substring(0, 3) : bk.language).toUpperCase())
-  const prefix = `[${prefixArr.length > 0 ? prefixArr.join('/') : '~'}]`
-  return `${prefix} ${bk.name}${authors}`
 }
 </script>
 
@@ -72,9 +59,9 @@ function toString(bk : book) {
   </h1>
   <div class="mx-auto">
     <div class="flex-row space-x-4">
-      <div v-for="(platform, index) in platforms" :key="platform" style="display: inline-block;">
-        <input :id="platform" v-model="used" type="radio" :value="platform">
-        <label :for="platform" class="mr-1">&nbsp;{{ platformName[index] }}</label>
+      <div v-for="(name, index) in providers" :key="index" style="display: inline-block;">
+        <input :id="index" v-model="checked" type="radio" :value="index">
+        <label :for="name" class="mr-1">&nbsp;{{ name }}</label>
       </div>
     </div>
 
@@ -85,17 +72,22 @@ function toString(bk : book) {
       @keydown.enter="search"
     >
   </div>
+
   <p id="load" class="mx-auto text-3xl font-semibold my-4" style="display: none;">
     Loading...
   </p>
-  <template v-if="books">
-    <div v-for="book in books" :key="book.id" class="mx-auto">
-      <a :href="book.url" target="_blank">{{ toString(book) }}</a>
-    </div>
+
+  <template v-if="data">
+    <template v-for="provider in data">
+      <div v-for="b in provider" :key="b.url" class="flex-row">
+        {{ b.fileType }}
+        {{ b.fileSize }}
+        <a :href="b.url" target="_blank">{{ b.name }}</a>
+        {{ b.authors ? `by ${b.authors.join(', ')}` : '' }}
+      </div>
+    </template>
   </template>
-  <template v-else-if="errors">
-    {{ errors.msg }}
-  </template>
+
   <footer>
     <hr>
     <p class="mx-auto">
