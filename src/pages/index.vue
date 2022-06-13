@@ -19,7 +19,7 @@ interface error {
   source: string,
 }
 
-const platforms = ['AllBook', 'ZLib', 'LibGen', 'Mem', 'OnlineBooks']
+const platforms = ['AllBook', 'ZLib', 'LibGen', 'Mem', 'OpenLib', 'OnlineBooks']
 let books:book[] = $ref([])
 let errors: error = $ref()
 
