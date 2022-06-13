@@ -3,7 +3,6 @@ import { $fetch } from 'ohmyfetch'
 
 interface book {
   id?: number,
-  isbn?: Number,
   name: string,
   url: string,
   authors?: string[],
@@ -11,7 +10,7 @@ interface book {
   date?: string,
   fileType?: string,
   language?: string,
-  filesize?: string,
+  fileSize?: string,
 }
 
 interface error {
@@ -56,6 +55,11 @@ async function search() {
   }
   if (load != null) load.innerText = ''
 }
+function toString(bk : book) {
+  const authors = bk.authors ? ` by ${bk.authors.join(', ')}` : ''
+  const prefix = `[${bk.fileType}/${bk.fileSize}]`
+  return `${prefix} ${bk.name}${authors}`
+}
 </script>
 
 <template>
@@ -80,7 +84,7 @@ async function search() {
   <p id="load" class="mx-auto text-3xl font-semibold my-4" />
   <template v-if="books">
     <div v-for="book in books" :key="book.id" class="mx-auto">
-      <a :href="book.url" target="_blank">{{ book.name }}</a>
+      <a :href="book.url" target="_blank">{{ toString(book) }}</a>
     </div>
   </template>
   <template v-else-if="errors">
