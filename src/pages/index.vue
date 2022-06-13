@@ -33,12 +33,11 @@ const providers = {
 
 let data:raw = $ref()
 const name = $ref('')
+let load:boolean = $ref(false)
 const checked:string|string[] = $ref('a')
 
 async function search() {
-  // get element which id = load
-  const load = document.getElementById('load')
-  if (load != null) load.style.display = 'block'
+  load = true
   let provider = checked
   if (checked === 'a') provider = Object.keys(providers)
   data = await $fetch(
@@ -49,7 +48,7 @@ async function search() {
       parseResponse: JSON.parse,
     },
   )
-  if (load != null) load.style.display = 'none'
+  load = false
 }
 </script>
 
@@ -73,9 +72,9 @@ async function search() {
     >
   </div>
 
-  <p id="load" class="mx-auto text-3xl font-semibold my-4" style="display: none;">
+  <div v-if="load" class="mx-auto text-3xl font-semibold my-4">
     Loading...
-  </p>
+  </div>
 
   <template v-if="data">
     <template v-for="provider in data">
@@ -88,10 +87,5 @@ async function search() {
     </template>
   </template>
 
-  <footer>
-    <hr>
-    <p class="mx-auto">
-      Copyright &copy; Bookie 2022. Powered by Vue.js & .NET 6
-    </p>
-  </footer>
+  <Footer />
 </template>
