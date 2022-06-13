@@ -29,7 +29,7 @@ const used = $ref('AllBook')
 async function search() {
   // get element which id = load
   const load = document.getElementById('load')
-  if (load != null) load.innerText = 'Loading...'
+  if (load != null) load.style.display = 'block'
   if (used === 'AllBook') {
     books = []
     for (const platform of platforms.slice(1, 5)) {
@@ -53,7 +53,7 @@ async function search() {
       errors = error.data
     })
   }
-  if (load != null) load.innerText = ''
+  if (load != null) load.style.display = 'none'
 }
 function toString(bk : book) {
   const authors = bk.authors ? ` by ${bk.authors.join(', ')}` : ''
@@ -81,7 +81,9 @@ function toString(bk : book) {
       @keydown.enter="search"
     >
   </div>
-  <p id="load" class="mx-auto text-3xl font-semibold my-4" />
+  <p id="load" class="mx-auto text-3xl font-semibold my-4" style="display: none;">
+    Loading...
+  </p>
   <template v-if="books">
     <div v-for="book in books" :key="book.id" class="mx-auto">
       <a :href="book.url" target="_blank">{{ toString(book) }}</a>
