@@ -28,6 +28,9 @@ const name = $ref('')
 const used = $ref('AllBook')
 
 async function search() {
+  // get element which id = load
+  const load = document.getElementById('load')
+  if (load != null) load.innerText = 'Loading...'
   if (used === 'AllBook') {
     books = []
     for (const platform of platforms.slice(1, 5)) {
@@ -51,6 +54,7 @@ async function search() {
       errors = error.data
     })
   }
+  if (load != null) load.innerText = ''
 }
 </script>
 
@@ -73,6 +77,7 @@ async function search() {
       @keydown.enter="search"
     >
   </div>
+  <p id="load" class="mx-auto text-3xl font-semibold my-4" />
   <template v-if="books">
     <div v-for="book in books" :key="book.id" class="mx-auto">
       <a :href="book.url" target="_blank">{{ book.name }}</a>
