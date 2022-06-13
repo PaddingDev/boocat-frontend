@@ -60,9 +60,9 @@ async function search() {
   </h1>
   <div class="mx-auto">
     <div class="flex-row space-x-4">
-      <div v-for="(platform, index) in platforms" :key="platform" class="flex-row">
+      <div v-for="(platform, index) in platforms" :key="platform" style="display: inline-block;">
         <input :id="platform" v-model="used" type="radio" :value="platform">
-        <label :for="platform" class="mr-1">{{ platformName[index] }}</label>
+        <label :for="platform" class="mr-1">&nbsp;{{ platformName[index] }}</label>
       </div>
     </div>
 
