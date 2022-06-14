@@ -14,6 +14,30 @@ useDark()
     </a>
   </div>
   <div class="mx-auto">
+    <pre>
+♡　  / l 、 　 　
+　  （°˙ ꒳ · ｡7 　
+　   l、    ヽ 　 　
+　   じし  _, )ノ
+    </pre>
+  </div>
+  <div class="mx-auto">
+    <h2 class="text-2xl font-semibold my-3">
+      Project Information
+    </h2>
+    <div>
+      <p>
+        Bookie is a book aggregation search engine created by KevinZonda & Percy Ma.
+      </p>
+      <p>
+        Technology Stack: .NET, C#, Vue, TypeScript, Azure Function
+      </p>
+      <p>
+        FrontEnd Source Code: <a href="https://github.com">GitHub</a>
+        <br>
+        BackEnd Source Code: <a href="https://github.com/KevinZonda/Bookie">https://github.com/KevinZonda/Bookie</a>
+      </p>
+    </div>
     <h2 class="text-2xl font-semibold my-3">
       Project Story
     </h2>
