@@ -29,7 +29,9 @@ async function search() {
 
 <template>
   <h1 class="mx-auto text-3xl font-semibold my-4">
-    Bookie
+    <a href="/">
+      Bookie
+    </a>
   </h1>
   <div class="mx-auto">
     <div class="flex-row space-x-4">
