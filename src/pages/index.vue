@@ -60,10 +60,12 @@ async function search() {
   <template v-if="data">
     <template v-for="provider in data">
       <div v-for="b in provider" :key="b.url" class="flex-row">
-        {{ b.fileType }}
-        {{ b.fileSize }}
-        <a :href="b.url" target="_blank">{{ b.name }}</a>
-        {{ b.authors ? `by ${b.authors.join(', ')}` : '' }}
+        <a :href="b.url" target="_blank">
+          {{ b.fileType }}
+          {{ b.fileSize }}
+          {{ b.name }}
+          {{ b.authors != null && b.authors.length > 0 ? `by ${b.authors.join(', ')}` : '' }}
+        </a>
       </div>
     </template>
   </template>
