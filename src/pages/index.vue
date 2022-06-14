@@ -38,9 +38,9 @@ async function search() {
   </div>
   <div class="mx-auto">
     <div class="flex-row space-x-4">
-      <div v-for="(name, index) in providers" :key="index" style="display: inline-block;">
+      <div v-for="(pname, index) in providers" :key="index" style="display: inline-block;">
         <input :id="index" v-model="checked" type="radio" :value="index">
-        <label :for="name" class="mr-1">&nbsp;{{ name }}</label>
+        <label :for="pname" class="mr-1">&nbsp;{{ pname }}</label>
       </div>
     </div>
 
