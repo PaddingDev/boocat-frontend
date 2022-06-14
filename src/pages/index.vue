@@ -28,11 +28,14 @@ async function search() {
 </script>
 
 <template>
-  <h1 class="mx-auto text-3xl font-semibold my-4">
+  <div class="mx-auto text-3xl font-semibold my-4" style="display: inline-block;">
     <a href="/">
-      Bookie
+      <h1>
+        Bookie
+      </h1>
+      <sup>Search Engine</sup>
     </a>
-  </h1>
+  </div>
   <div class="mx-auto">
     <div class="flex-row space-x-4">
       <div v-for="(name, index) in providers" :key="index" style="display: inline-block;">
