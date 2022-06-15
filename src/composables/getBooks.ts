@@ -13,7 +13,7 @@ interface resultModel {
 }
 
 interface bookInfo {
-  id?: number
+  id?: string
   name: string
   url: string
   authors?: string[]
