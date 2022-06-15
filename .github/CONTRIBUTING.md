@@ -9,7 +9,7 @@ Install dependencies
 pnpm i
 ```
 
-Then [boot backend](https://github.com/kevinzonda/bookie)
+Then [boot backend](https://github.com/kevinzonda/BooCat)
 
 Create `.env` and type the endpoint (if you dont change backend port, it's `7071`).
 

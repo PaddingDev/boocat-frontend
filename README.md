@@ -1,6 +1,6 @@
-# bookie-frontend
+# boocat-frontend
 
-This is the frontend designed for [Bookie](https://github.com/kevinzonda/bookie).
+This is the frontend designed for [BooCat](https://github.com/KevinZonda/BooCat).
 
 ## Motivation
 
@@ -12,4 +12,4 @@ If you need to deploy it, or want to give it a PR you can refer to [Contribute G
 
 ## License
 
-**bookie-frontend** © [Percy Ma](https://github.com/kecrily), Released under [MIT License](LICENSE).
+**boocat-frontend** © [Percy Ma](https://github.com/kecrily), Released under [MIT License](LICENSE).

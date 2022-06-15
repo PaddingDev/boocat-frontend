@@ -7,10 +7,10 @@
 
 ## Project Information
 
-Bookie is a book aggregation search engine created by KevinZonda & Percy Ma.  
+BooCat is a book aggregation search engine created by KevinZonda & Percy Ma.  
 Technology Stack: .NET, C#, Vue, TypeScript, Azure Function  
-FrontEnd Source Code: <https://github.com/kecrily/bookie-frontend>  
-BackEnd Source Code: <https://github.com/KevinZonda/Bookie>
+FrontEnd Source Code: <https://github.com/kecrily/BooCat-frontend>  
+BackEnd Source Code: <https://github.com/KevinZonda/BooCat>
 
 ## Project Story
 
