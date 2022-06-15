@@ -25,12 +25,33 @@ interface bookInfo {
 }
 
 export async function getBooks(name: string, provider: string|string[]): Promise<raw> {
-  return await $fetch(
+  try {
+    return await getBooksWithTimeout(name, provider, 11000)
+  } catch {
+    const emptyRcd: Record<string, resultModel> = {}
+    if (typeof provider === 'string') {
+      emptyRcd[provider] = { success: false, err: { msg: 'timeout' } }
+    } else {
+      provider.forEach((_x) => {
+        emptyRcd[_x] = { success: false, err: { msg: 'timeout' } }
+      })
+    }
+    return emptyRcd
+  }
+}
+
+async function getBooksWithTimeout(name: string, provider: string|string[], timeout: number): Promise<raw> {
+  const controller = new AbortController()
+  const id = setTimeout(() => controller.abort(), timeout)
+  const rst = await $fetch(
     '/api/AllBooks',
     {
       method: 'GET',
       params: { name, provider },
       parseResponse: JSON.parse,
+      signal: controller.signal,
     },
   )
+  clearTimeout(id)
+  return rst
 }
