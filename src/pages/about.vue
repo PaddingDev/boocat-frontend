@@ -1,30 +1,8 @@
-<script lang="ts" setup>
-import { useDark } from '@vueuse/core'
-
-useDark()
-</script>
-
 <template>
-  <div class="mx-auto text-3xl font-semibold my-4" style="display: inline-block;">
-    <a href="/">
-      <h1>
-        Bookie
-      </h1>
-      <sup>About</sup>
-    </a>
-  </div>
   <div class="mx-auto">
-    <pre>
-♡　  / l 、 　 　
-　  （°˙ ꒳ · ｡7 　
-　   l、    ヽ 　 　
-　   じし  _, )ノ
-    </pre>
-  </div>
-  <div class="mx-auto">
-    <h2 class="text-2xl font-semibold my-3">
+    <h1 class="text-2xl font-semibold my-3">
       Project Information
-    </h2>
+    </h1>
     <div>
       <p>
         Bookie is a book aggregation search engine created by KevinZonda & Percy Ma.
@@ -83,6 +61,4 @@ useDark()
       &lt; Back to Home
     </a>
   </div>
-
-  <Footer />
 </template>

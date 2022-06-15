@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import { useDark } from '@vueuse/core'
 import { raw } from '~/composables/getBooks'
-
-useDark()
 
 const providers = {
   a: 'All',
@@ -28,14 +25,6 @@ async function search() {
 </script>
 
 <template>
-  <div class="mx-auto text-3xl font-semibold my-4" style="display: inline-block;">
-    <a href="/">
-      <h1>
-        Bookie
-      </h1>
-      <sup>Search Engine</sup>
-    </a>
-  </div>
   <div class="mx-auto">
     <div class="flex-row space-x-4">
       <div v-for="(pname, index) in providers" :key="index" style="display: inline-block;">
@@ -47,7 +36,7 @@ async function search() {
     <input
       v-model="name"
       placeholder="Search..."
-      light:border="light-800 2"
+      border="light-800 2"
       class="p-2 my-4 rounded-lg"
       @keydown.enter="search"
     >
@@ -65,7 +54,7 @@ async function search() {
             {{ b.fileType }}
             {{ b.fileSize }}
             {{ b.name }}
-            {{ b.authors != null && b.authors.length > 0 ? `by ${b.authors.join(', ')}` : '' }}
+            {{ b.authors && b.authors.length ? `by ${b.authors.join(', ')}` : '' }}
           </a>
         </div>
       </template>
@@ -81,6 +70,4 @@ async function search() {
       </template>
     </template>
   </template>
-
-  <Footer />
 </template>
