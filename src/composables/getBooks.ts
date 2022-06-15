@@ -30,11 +30,11 @@ export async function getBooks(name: string, provider: string|string[]): Promise
   } catch {
     const emptyRcd: Record<string, resultModel> = {}
     if (typeof provider === 'string') {
-      emptyRcd[provider] = { success: false, err: { msg: 'timeout' } }
+      emptyRcd[provider] = { success: false, err: { msg: 'timeout', source: 'FE api' } }
     } else {
       provider.forEach((_x) => {
         if (_x !== 'a')
-          emptyRcd[_x] = { success: false, err: { msg: 'timeout' } }
+          emptyRcd[_x] = { success: false, err: { msg: 'timeout', source: 'FE api' } }
       })
     }
     return emptyRcd
