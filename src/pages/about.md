@@ -1,7 +1,7 @@
 <pre style="text-align: center;">
 ♡　  / l 、 　 　
 　  （°˙ ꒳ · ｡7 　
-　   l、    ヽ 　 　
+　      l、    ヽ 　 　
 　   じし  _, )ノ
 </pre>
 
