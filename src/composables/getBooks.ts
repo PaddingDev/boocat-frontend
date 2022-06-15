@@ -28,7 +28,7 @@ export async function getBooks(name: string, provider: string|string[]): Promise
   return await $fetch(
     '/api/AllBooks',
     {
-      method: 'POST',
+      method: 'GET',
       params: { name, provider },
       parseResponse: JSON.parse,
     },
