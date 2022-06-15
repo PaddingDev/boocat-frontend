@@ -1,8 +1,18 @@
 import { $fetch } from 'ohmyfetch'
 
-export type raw = Record<string, book[]>
+export type raw = Record<string, resultModel>
 
-interface book {
+interface errModel {
+  msg: string
+  source?: string
+}
+interface resultModel {
+  success: boolean
+  books?: bookInfo[]
+  err?: errModel
+}
+
+interface bookInfo {
   id?: number
   name: string
   url: string

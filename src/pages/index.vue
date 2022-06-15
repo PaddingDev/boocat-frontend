@@ -58,15 +58,22 @@ async function search() {
   </div>
 
   <template v-if="data">
-    <template v-for="provider in data">
-      <div v-for="b in provider" :key="b.url" class="flex-row">
-        <a :href="b.url" target="_blank">
-          {{ b.fileType }}
-          {{ b.fileSize }}
-          {{ b.name }}
-          {{ b.authors != null && b.authors.length > 0 ? `by ${b.authors.join(', ')}` : '' }}
-        </a>
-      </div>
+    <template v-for="result in data">
+      <template v-if="result.success">
+        <div v-for="b in result.books" :key="b.url" class="flex-row">
+          <a :href="b.url" target="_blank">
+            {{ b.fileType }}
+            {{ b.fileSize }}
+            {{ b.name }}
+            {{ b.authors != null && b.authors.length > 0 ? `by ${b.authors.join(', ')}` : '' }}
+          </a>
+        </div>
+      </template>
+      <template v-else>
+        <p :key="result.err.msg">
+          {{ result.err.msg }}
+        </p>
+      </template>
     </template>
   </template>
 
