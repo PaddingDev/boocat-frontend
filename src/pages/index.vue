@@ -14,10 +14,12 @@ let data:raw = $ref()
 const name:string = $ref()
 let load:boolean = $ref(false)
 const checked:string|string[] = $ref('a')
+let isMultiCol = $ref(false)
 
 async function search() {
   load = true
   let provider = checked
+  isMultiCol = checked === 'a'
   if (checked === 'a') provider = Object.keys(providers)
   data = await getBooks(name, provider)
   load = false
@@ -51,7 +53,7 @@ async function search() {
       <div v-if="!result.success" :key="result.err?.msg">
         {{ result.err }}
       </div>
-      <div v-else :key="result.books![0].url" class="w-1/4 flex-col space-y-4">
+      <div v-else :key="result.books![0].url" class="flex-col space-y-4" :class="isMultiCol ? 'w-1/4' : ''">
         <div v-for="b in result.books" :key="b.url">
           <div class="flex-row space-x-2">
             <span
