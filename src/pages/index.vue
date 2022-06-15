@@ -51,12 +51,15 @@ async function search() {
   <div v-if="data" class="flex-row space-x-4">
     <template v-for="(result, prov) in data">
       <div v-if="!result.success" :key="result.err?.msg">
+        <p :key="providers.get(prov)">
+          {{ providers.get(prov) }} (-1)
+        </p>
         {{ result.err }}
       </div>
       <div v-else :key="result.books![0].url" class="flex-col space-y-4" :class="isMultiCol ? 'w-1/4' : ''">
         <template v-if="isMultiCol">
           <p :key="providers.get(prov)">
-            {{ providers.get(prov) }}
+            {{ providers.get(prov) }} ({{ result.books === undefined ? -1 : result.books.length }})
           </p>
         </template>
         <div v-for="b in result.books" :key="b.url">

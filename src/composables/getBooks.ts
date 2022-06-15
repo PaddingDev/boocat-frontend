@@ -33,7 +33,8 @@ export async function getBooks(name: string, provider: string|string[]): Promise
       emptyRcd[provider] = { success: false, err: { msg: 'timeout' } }
     } else {
       provider.forEach((_x) => {
-        emptyRcd[_x] = { success: false, err: { msg: 'timeout' } }
+        if (_x !== 'a')
+          emptyRcd[_x] = { success: false, err: { msg: 'timeout' } }
       })
     }
     return emptyRcd
