@@ -70,9 +70,14 @@ async function search() {
         </div>
       </template>
       <template v-else>
-        <p :key="result.err.msg">
-          {{ result.err.msg }}
-        </p>
+        <template v-if="result.err">
+          <p :key="result.err.msg">
+            {{ result.err.msg }}
+          </p>
+        </template>
+        <template v-else>
+          Parse failed!
+        </template>
       </template>
     </template>
   </template>
