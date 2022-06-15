@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import Vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
+import Markdown from 'vite-plugin-md'
 import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -22,6 +23,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       tsconfigPaths({ loose: true }),
       Vue({
+        include: [/\.vue$/, /\.md$/],
         reactivityTransform: true,
       }),
       AutoImport({
@@ -29,11 +31,17 @@ export default defineConfig(({ mode }) => {
         dts: 'src/types/auto-imports.d.ts',
         dirs: ['src/composables'],
       }),
+      Markdown({
+        wrapperClasses: 'prose m-auto',
+      }),
       Components({
+        extensions: ['vue', 'md'],
         dts: 'src/types/components.d.ts',
       }),
       // Frontend
-      Pages(),
+      Pages({
+        extensions: ['vue', 'md'],
+      }),
       Layouts(),
       Unocss(),
     ],
