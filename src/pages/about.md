@@ -2,7 +2,7 @@
 ♡　  / l 、 　 　
 　  （°˙ ꒳ · ｡7 　
 　      l、    ヽ 　 　
-　   じし  _, )ノ
+　   じし   _, )ノ
 </pre>
 
 ## Project Information
