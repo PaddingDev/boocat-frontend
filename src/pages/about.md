@@ -1,4 +1,11 @@
-# Project Information
+<pre style="text-align: center;">
+♡　  / l 、 　 　
+　  （°˙ ꒳ · ｡7 　
+　   l、    ヽ 　 　
+　   じし  _, )ノ
+</pre>
+
+## Project Information
 
 Bookie is a book aggregation search engine created by KevinZonda & Percy Ma.  
 Technology Stack: .NET, C#, Vue, TypeScript, Azure Function  
