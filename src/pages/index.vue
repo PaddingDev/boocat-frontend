@@ -46,28 +46,33 @@ async function search() {
     Loading...
   </div>
 
-  <template v-if="data">
+  <div v-if="data" class="flex-row space-x-4">
     <template v-for="result in data">
-      <template v-if="result.success">
-        <div v-for="b in result.books" :key="b.url" class="flex-row">
+      <div v-if="!result.success" :key="result.err?.msg">
+        {{ result.err }}
+      </div>
+      <div v-else :key="result.books![0].url" class="w-1/4 flex-col space-y-4">
+        <div v-for="b in result.books" :key="b.url">
+          <div class="flex-row space-x-2">
+            <span
+              v-if="b.fileType"
+              class="rounded-md bg-gray-400 text-light-200 px-1 py-0.5 uppercase"
+            >
+              {{ b.fileType }}
+            </span>
+            <span
+              v-if="b.fileSize"
+              class="rounded-md bg-gray-400 text-light-200 px-1 py-0.5 uppercase"
+            >
+              {{ b.fileSize }}
+            </span>
+          </div>
           <a :href="b.url" target="_blank">
-            {{ b.fileType }}
-            {{ b.fileSize }}
             {{ b.name }}
-            {{ b.authors && b.authors.length ? `by ${b.authors.join(', ')}` : '' }}
           </a>
+          {{ b.authors && b.authors.length ? `by ${b.authors.join(', ')}` : '' }}
         </div>
-      </template>
-      <template v-else>
-        <template v-if="result.err">
-          <p :key="result.err.msg">
-            {{ result.err.msg }}
-          </p>
-        </template>
-        <template v-else>
-          Parse failed!
-        </template>
-      </template>
+      </div>
     </template>
-  </template>
+  </div>
 </template>
