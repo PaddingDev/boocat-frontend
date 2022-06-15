@@ -45,7 +45,7 @@ async function getBooksWithTimeout(name: string, provider: string|string[], time
   const controller = new AbortController()
   const id = setTimeout(() => controller.abort(), timeout)
   const rst = await $fetch(
-    'https://api.boocat.org/api/AllBooks',
+    '/api/AllBooks',
     {
       method: 'GET',
       params: { name, provider },
