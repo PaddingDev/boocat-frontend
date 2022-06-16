@@ -81,7 +81,9 @@ async function search() {
         <p :key="providersMap.get(prov)" :style="getColour(prov)" class="boo-round">
           {{ providersMap.get(prov) }} (-1)
         </p>
-        {{ result.err?.msg }} {{ result.err?.source ? `from ${result.err?.source}` : '' }}
+        <p style="font-style: italic;">
+          Error: {{ result.err?.msg }} {{ result.err?.source ? `from ${result.err?.source}` : '' }}
+        </p>
       </div>
       <div
         v-else :key="`${prov}-ok`"
@@ -104,8 +106,11 @@ async function search() {
           </div>
           <a :href="b.url" target="_blank">
             {{ b.name }}
+            <span v-if="b.authors && b.authors.length" style="font-style: italic;">
+              <br>
+              {{ `by ${b.authors.join(', ')}` }}
+            </span>
           </a>
-          {{ b.authors && b.authors.length ? `by ${b.authors.join(', ')}` : '' }}
         </div>
       </div>
     </template>
