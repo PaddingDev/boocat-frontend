@@ -123,5 +123,9 @@ async function search() {
 }
 .boo-round {
   border-radius: .375rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 }
 </style>
