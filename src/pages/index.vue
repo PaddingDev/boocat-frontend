@@ -37,17 +37,17 @@ const providers = {
 
 let data: raw = $ref()
 const name: string = $ref()
-let load: boolean = $ref(false)
+let isLoad: boolean = $ref(false)
 const checked: string | string[] = $ref('a')
 let isMultiCol = $ref(false)
 
 async function search() {
-  load = true
+  isLoad = true
   let provider = checked
   isMultiCol = checked === 'a'
   if (checked === 'a') provider = Object.keys(providers)
   data = await getBooks(name, provider)
-  load = false
+  isLoad = false
 }
 </script>
 
@@ -66,9 +66,7 @@ async function search() {
     >
   </div>
 
-  <div v-if="load" class="mx-auto text-3xl font-semibold my-4">
-    Loading...
-  </div>
+  <Loader v-if="isLoad" />
 
   <div v-if="data" class="md:(flex-row space-x-4)">
     <template v-for="(result, prov) in data">
