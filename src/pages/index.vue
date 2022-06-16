@@ -19,10 +19,10 @@ const providers = {
   b: 'Online Books Page',
 }
 
-let data:raw = $ref()
-const name:string = $ref()
-let load:boolean = $ref(false)
-const checked:string|string[] = $ref('a')
+let data: raw = $ref()
+const name: string = $ref()
+let load: boolean = $ref(false)
+const checked: string | string[] = $ref('a')
 let isMultiCol = $ref(false)
 
 async function search() {
@@ -37,7 +37,7 @@ async function search() {
 
 <template>
   <div class="mx-auto">
-    <div class="flex-row space-x-4">
+    <div class="flex-col md:(flex-row space-x-4)">
       <div v-for="(pname, index) in providers" :key="index" style="display: inline-block;">
         <input :id="index" v-model="checked" type="radio" :value="index">
         <label :for="pname" class="mr-1">&nbsp;{{ pname }}</label>
@@ -45,10 +45,7 @@ async function search() {
     </div>
 
     <input
-      v-model="name"
-      placeholder="Search..."
-      border="light-800 2"
-      class="p-2 my-4 rounded-lg"
+      v-model="name" placeholder="Search..." border="light-800 2" class="p-2 my-4 rounded-lg"
       @keydown.enter="search"
     >
   </div>
@@ -57,33 +54,36 @@ async function search() {
     Loading...
   </div>
 
-  <div v-if="data" class="flex-row space-x-4">
+  <div v-if="data" class="md:(flex-row space-x-4)">
     <template v-for="(result, prov) in data">
-      <div v-if="!result.success" :key="result.err?.msg" class="flex-col space-y-4" :class="isMultiCol ? 'w-1/4' : ''">
+      <div
+        v-if="!result.success"
+        :key="result.err?.msg"
+        class="flex-col space-y-4"
+        :class="isMultiCol ? 'md:w-1/4' : ''"
+      >
         <p :key="providersMap.get(prov)">
           {{ providersMap.get(prov) }} (-1)
         </p>
         {{ result.err?.msg }} {{ result.err?.source ? `from ${result.err?.source}` : '' }}
       </div>
       <!-- FIXME: WRONG KEY -->
-      <div v-else :key="result.books === undefined ? result.err?.msg : result.books[0].url" class="flex-col space-y-4" :class="isMultiCol ? 'w-1/4' : ''">
+      <div
+        v-else :key="result.books === undefined ? result.err?.msg : result.books[0].url"
+        class="md:(flex-col) space-y-4"
+        :class="isMultiCol ? 'md:w-1/4' : ''"
+      >
         <template v-if="isMultiCol">
           <p :key="providersMap.get(prov)">
             {{ providersMap.get(prov) }} ({{ result.books === undefined ? 0 : result.books.length }})
           </p>
         </template>
         <div v-for="b in result.books" :key="b.url">
-          <div class="flex-row space-x-2">
-            <span
-              v-if="b.fileType"
-              class="rounded-md bg-gray-400 text-light-200 px-1 py-0.5 uppercase"
-            >
+          <div class="md:(flex-row space-x-2)">
+            <span v-if="b.fileType" class="badge">
               {{ b.fileType }}
             </span>
-            <span
-              v-if="b.fileSize"
-              class="rounded-md bg-gray-400 text-light-200 px-1 py-0.5 uppercase"
-            >
+            <span v-if="b.fileSize" class="badge">
               {{ b.fileSize }}
             </span>
           </div>
@@ -96,3 +96,9 @@ async function search() {
     </template>
   </div>
 </template>
+
+<style scoped>
+.badge {
+  @apply rounded-md bg-gray-400 text-light-200 px-1 py-0.5 uppercase;
+}
+</style>
