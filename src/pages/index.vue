@@ -26,6 +26,12 @@ function getColour(provider: string) {
   return ''
 }
 
+function maxJoin(arr : string[], max : number) {
+  if (arr.length > max)
+    return `${arr.slice(0, max).join(', ')}, etc.`
+  return arr.join(', ')
+}
+
 const providers = {
   a: 'All',
   z: 'Z-Library',
@@ -106,7 +112,7 @@ async function search() {
             {{ b.name }}
             <span v-if="b.authors && b.authors.length" style="font-style: italic;">
               <br>
-              {{ `by ${b.authors.join(', ')}` }}
+              {{ isMultiCol ? `by ${maxJoin(b.authors, 3)}` : `by ${b.authors.join(', ')}` }}
             </span>
           </a>
         </div>
