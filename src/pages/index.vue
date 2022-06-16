@@ -65,7 +65,8 @@ async function search() {
         </p>
         {{ result.err?.msg }} {{ result.err?.source ? `from ${result.err?.source}` : '' }}
       </div>
-      <div v-else :key="result.books![0].url" class="flex-col space-y-4" :class="isMultiCol ? 'w-1/4' : ''">
+      <!-- FIXME: WRONG KEY -->
+      <div v-else :key="result.books === undefined ? result.err?.msg : result.books[0].url" class="flex-col space-y-4" :class="isMultiCol ? 'w-1/4' : ''">
         <template v-if="isMultiCol">
           <p :key="providersMap.get(prov)">
             {{ providersMap.get(prov) }} ({{ result.books === undefined ? 0 : result.books.length }})
