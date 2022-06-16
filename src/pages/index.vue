@@ -10,6 +10,22 @@ const providersMap = new Map<string, string>([
   ['b', 'Online Books Page'],
 ])
 
+const providerColour = new Map<string, string[]>([
+  ['a', ['#FFFFFF', '#000000']],
+  ['z', ['#0089A7', '#FFFFFF']],
+  ['g', ['#A00000', '#FFFFFF']],
+  ['m', ['#CB1B45', '#FFFFFF']],
+  ['o', ['#EFBB24', '#FFFFFF']],
+  ['b', ['#1B813E', '#FFFFFF']],
+])
+
+function getColour(provider: string) {
+  const c = providerColour.get(provider)
+  if (c)
+    return `background: ${c[0]}; color: ${c[1]};`
+  return ''
+}
+
 const providers = {
   a: 'All',
   z: 'Z-Library',
@@ -62,7 +78,7 @@ async function search() {
         class="flex-col space-y-4"
         :class="isMultiCol ? 'md:w-1/4' : ''"
       >
-        <p :key="providersMap.get(prov)">
+        <p :key="providersMap.get(prov)" :style="getColour(prov)" class="boo-round">
           {{ providersMap.get(prov) }} (-1)
         </p>
         {{ result.err?.msg }} {{ result.err?.source ? `from ${result.err?.source}` : '' }}
@@ -73,7 +89,7 @@ async function search() {
         :class="isMultiCol ? 'md:w-1/4' : ''"
       >
         <template v-if="isMultiCol">
-          <p :key="providersMap.get(prov)">
+          <p :key="providersMap.get(prov)" :style="getColour(prov)" class="boo-round">
             {{ providersMap.get(prov) }} ({{ result.books === undefined ? 0 : result.books.length }})
           </p>
         </template>
@@ -99,5 +115,8 @@ async function search() {
 <style scoped>
 .badge {
   @apply rounded-md bg-gray-400 text-light-200 px-1 py-0.5 uppercase;
+}
+.boo-round {
+  border-radius: .375rem;
 }
 </style>
