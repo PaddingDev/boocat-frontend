@@ -40,7 +40,7 @@ async function search() {
     <div class="flex-col md:(flex-row space-x-4)">
       <div v-for="(pname, index) in providers" :key="index" style="display: inline-block;">
         <input :id="index" v-model="checked" type="radio" :value="index">
-        <label :for="pname" class="mr-1">&nbsp;{{ pname }}</label>
+        <label :for="index" class="mr-1">&nbsp;{{ pname }}</label>
       </div>
     </div>
 
@@ -58,7 +58,7 @@ async function search() {
     <template v-for="(result, prov) in data">
       <div
         v-if="!result.success"
-        :key="result.err?.msg"
+        :key="`${prov}-err`"
         class="flex-col space-y-4"
         :class="isMultiCol ? 'md:w-1/4' : ''"
       >
@@ -68,7 +68,7 @@ async function search() {
         {{ result.err?.msg }} {{ result.err?.source ? `from ${result.err?.source}` : '' }}
       </div>
       <div
-        v-else :key="providersMap.get(prov)"
+        v-else :key="`${prov}-ok`"
         class="md:(flex-col) space-y-4"
         :class="isMultiCol ? 'md:w-1/4' : ''"
       >
