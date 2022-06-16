@@ -1,5 +1,6 @@
 @ECHO OFF
-COPY "dist/index.html" "dist/404.html"
-ECHO "boocat.org" > dist/CNAME
-type NUL > dist/.nojekyll
+cd dist
+COPY index.html 404.html
+ECHO boocat.org>CNAME
+type NUL > .nojekyll
 PAUSE
