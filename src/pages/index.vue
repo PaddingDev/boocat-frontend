@@ -68,6 +68,7 @@ async function search() {
 
     <input
       v-model="name" placeholder="Search..." border="light-800 2" class="p-2 my-4 rounded-lg"
+      type="search"
       @keydown.enter="search"
     >
   </div>
@@ -126,10 +127,6 @@ async function search() {
   @apply rounded-md bg-gray-400 text-light-200 px-1 py-0.5 uppercase;
 }
 .boo-round {
-  border-radius: .375rem;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
+  @apply rounded-sm px-1 py-0.5;
 }
 </style>
