@@ -1,6 +1,7 @@
 node_modules
 *.log*
 .cache
+.eslintcache
 .output
 .env
 dist
