@@ -58,7 +58,7 @@ async function search() {
 </script>
 
 <template>
-  <div class="mx-auto">
+  <div class="mx-auto mb-4">
     <div class="flex-col md:(flex-row space-x-4)">
       <div v-for="(pname, index) in providers" :key="index" style="display: inline-block;">
         <input :id="index" v-model="checked" type="radio" :value="index">
@@ -66,11 +66,17 @@ async function search() {
       </div>
     </div>
 
-    <input
-      v-model="name" placeholder="Search..." border="light-800 2" class="p-2 my-4 rounded-lg"
-      type="search"
-      @keydown.enter="search"
-    >
+    <div class="items-baseline flex-row space-x-3">
+      <input
+        v-model="name" placeholder="Search..."
+        border="light-800 2" class="p-2 my-4 rounded-lg w-full"
+        type="search"
+        @keydown.enter="search"
+      >
+      <button class="bg-dark-800 text-light-500 rounded-md h-11 px-4" @click="search">
+        Search
+      </button>
+    </div>
   </div>
 
   <Loader v-if="isLoad" />
