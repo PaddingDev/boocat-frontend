@@ -27,14 +27,20 @@ interface bookInfo {
 export async function getBooks(name: string, provider: string|string[]): Promise<raw> {
   try {
     return await getBooksWithTimeout(name, provider, 11000)
-  } catch {
+  } catch (ex) {
+    let errText = 'Timeout'
+    if (typeof ex === 'string')
+      errText = ex
+    else if (ex instanceof Error)
+      errText = ex.message
+
     const emptyRcd: Record<string, resultModel> = {}
     if (typeof provider === 'string') {
-      emptyRcd[provider] = { success: false, err: { msg: 'timeout', source: 'FE api' } }
+      emptyRcd[provider] = { success: false, err: { msg: errText, source: 'front end requester' } }
     } else {
       provider.forEach((_x) => {
         if (_x !== 'a')
-          emptyRcd[_x] = { success: false, err: { msg: 'timeout', source: 'FE api' } }
+          emptyRcd[_x] = { success: false, err: { msg: errText, source: 'front end requester' } }
       })
     }
     return emptyRcd
@@ -45,7 +51,7 @@ async function getBooksWithTimeout(name: string, provider: string|string[], time
   const controller = new AbortController()
   const id = setTimeout(() => controller.abort(), timeout)
   const rst = await $fetch(
-    '/api/AllBooks',
+    'https://api.boocat.org/api/AllBooks',
     {
       method: 'GET',
       params: { name, provider },
