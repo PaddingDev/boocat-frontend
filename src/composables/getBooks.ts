@@ -28,11 +28,14 @@ export async function getBooks(name: string, provider: string|string[]): Promise
   try {
     return await getBooksWithTimeout(name, provider, 11000)
   } catch (ex) {
-    let errText = 'Timeout'
+    let errText = 'Unknown'
     if (typeof ex === 'string')
       errText = ex
     else if (ex instanceof Error)
       errText = ex.message
+
+    if (errText.startsWith('The user aborted a request.'))
+      errText = 'Timeout'
 
     const emptyRcd: Record<string, resultModel> = {}
     if (typeof provider === 'string') {
