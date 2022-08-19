@@ -9,7 +9,7 @@
 
 BooCat is a book aggregation search engine created by KevinZonda & Percy Ma.  
 Technology Stack: .NET, C#, Vue, TypeScript, Azure Function  
-FrontEnd Source Code: <https://github.com/kecrily/BooCat-frontend>  
+FrontEnd Source Code: <https://github.com/kecrily/Bookie-frontend>  
 BackEnd Source Code: <https://github.com/KevinZonda/BooCat>
 
 ## Project Story
