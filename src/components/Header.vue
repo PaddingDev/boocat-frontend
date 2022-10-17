@@ -1,13 +1,13 @@
 <template>
-  <header class="mx-auto font-semibold my-4">
-    <div class="flex-col">
-      <div class="flex-row">
+  <header m="x-auto y-4" font-semibold>
+    <div flex="col">
+      <div flex="row">
         <a href="/">
-          <div class="text-3xl">BooCat</div>
+          <div text="3xl">BooCat</div>
         </a>
         <ModeSwitch />
       </div>
-      <div class="text-xl">
+      <div text="xl">
         Search Engine
       </div>
     </div>

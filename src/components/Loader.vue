@@ -1,7 +1,7 @@
 <template>
-  <div class="loader mx-auto" style="margin-top: 2rem;" />
-  <div class="text-3xl font-semibold my-4 mx-auto" style="margin-top: 2rem;">
-    <p class="mx-auto">
+  <div class="loader" m="x-auto t-8" />
+  <div class="text-3xl font-semibold" m="x-auto t-8 b-4">
+    <p mx-auto>
       Loading...
     </p>
   </div>
