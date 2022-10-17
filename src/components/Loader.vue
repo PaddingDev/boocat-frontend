@@ -6,7 +6,7 @@
     </p>
   </div>
 </template>
-<!-- same line in flex layout-->
+<!-- same line in flex layout -->
 
 <style scoped>
 .loader {
