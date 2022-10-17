@@ -7,8 +7,32 @@ import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import Unocss from 'unocss/vite'
+import type { ManifestOptions } from 'vite-plugin-pwa'
+import { VitePWA as PWA } from 'vite-plugin-pwa'
 
-// https://vitejs.dev/config/
+const manifest: Partial<ManifestOptions> = {
+  name: 'BooCat',
+  // eslint-disable-next-line camelcase
+  short_name: 'BooCat',
+  description: 'A book search engine',
+  // eslint-disable-next-line camelcase
+  theme_color: '#ffffff',
+  icons: [
+    {
+      src: 'android-chrome-192x192.png',
+      sizes: '192x192',
+      type: 'image/png',
+      purpose: 'any maskable',
+    },
+    {
+      src: 'android-chrome-512x512.png',
+      sizes: '512x512',
+      type: 'image/png',
+      purpose: 'any maskable',
+    },
+  ],
+}
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   return {
@@ -40,6 +64,12 @@ export default defineConfig(({ mode }) => {
       Pages({ extensions: ['vue', 'md'] }),
       Layouts(),
       Unocss(),
+      PWA({
+        registerType: 'autoUpdate',
+        injectRegister: 'auto',
+        devOptions: { enabled: true },
+        manifest,
+      }),
     ],
   }
 })
