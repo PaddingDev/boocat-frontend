@@ -27,21 +27,17 @@ export default defineConfig(({ mode }) => {
         reactivityTransform: true,
       }),
       AutoImport({
+        vueTemplate: true,
         imports: ['vue', 'vue/macros'],
         dts: 'src/types/auto-imports.d.ts',
         dirs: ['src/composables'],
       }),
-      Markdown({
-        wrapperClasses: 'prose m-auto',
-      }),
+      Markdown({ wrapperClasses: 'prose m-auto' }),
       Components({
         extensions: ['vue', 'md'],
         dts: 'src/types/components.d.ts',
       }),
-      // Frontend
-      Pages({
-        extensions: ['vue', 'md'],
-      }),
+      Pages({ extensions: ['vue', 'md'] }),
       Layouts(),
       Unocss(),
     ],

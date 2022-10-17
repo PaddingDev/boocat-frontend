@@ -1,44 +1,18 @@
 <script lang="ts" setup>
 import { raw } from '~/composables/getBooks'
+import { providers } from '~/composables/providers'
 
-const providersMap = new Map<string, string>([
-  ['a', 'All'],
-  ['z', 'Z-Library'],
-  ['g', 'Library Genesis'],
-  ['m', 'Mem of The World'],
-  ['o', 'Open Library'],
-  ['b', 'Online Books Page'],
-])
-
-const providerColour = new Map<string, string[]>([
-  ['a', ['#FFFFFF', '#000000']],
-  ['z', ['#0089A7', '#FFFFFF']],
-  ['g', ['#A00000', '#FFFFFF']],
-  ['m', ['#CB1B45', '#FFFFFF']],
-  ['o', ['#EFBB24', '#FFFFFF']],
-  ['b', ['#1B813E', '#FFFFFF']],
-])
-
-function getColour(provider: string) {
-  const c = providerColour.get(provider)
-  if (c)
-    return `background: ${c[0]}; color: ${c[1]};`
-  return ''
-}
-
-function maxJoin(arr : string[], max : number) {
+function maxJoin(arr: string[], max: number) {
   if (arr.length > max)
     return `${arr.slice(0, max).join(', ')}, etc.`
   return arr.join(', ')
 }
 
-const providers = {
-  a: 'All',
-  z: 'Z-Library',
-  g: 'Library Genesis',
-  m: 'Mem of The World',
-  o: 'Open Library',
-  b: 'Online Books Page',
+function getColour(code: string) {
+  const provider = providers[code]
+  if (provider)
+    return `background: ${provider.background}; color: ${provider.text};`
+  return ''
 }
 
 let data: raw = $ref()
@@ -60,9 +34,9 @@ async function search() {
 <template>
   <div m="x-auto b-4">
     <div class="flex-col md:(flex-row space-x-4)">
-      <div v-for="(pname, index) in providers" :key="index" block>
+      <div v-for="(p, index) in providers" :key="index" block>
         <input :id="index" v-model="checked" type="radio" :value="index">
-        <label :for="index" class="mr-1">&nbsp;{{ pname }}</label>
+        <label :for="index" class="mr-1">&nbsp;{{ p.name }}</label>
       </div>
     </div>
 
@@ -82,28 +56,29 @@ async function search() {
   <Loader v-if="isLoad" />
 
   <div v-if="data" class="md:(flex-row space-x-4)">
-    <template v-for="(result, prov) in data">
+    <template v-for="(result, p) in data">
       <div
         v-if="!result.success"
-        :key="`${prov}-err`"
+        :key="`${p}-err`"
         class="flex-col space-y-4"
         :class="isMultiCol ? 'md:w-1/4' : ''"
       >
-        <p :key="providersMap.get(prov)" :style="getColour(prov)" class="boo-round">
-          {{ providersMap.get(prov) }} (-1)
+        <p :key="providers[p].name" :style="getColour(p)" class="boo-round">
+          {{ providers[p].name }} (-1)
         </p>
         <p italic>
           Error: {{ result.err?.msg }} {{ result.err?.source ? `from ${result.err?.source}` : '' }}
         </p>
       </div>
+
       <div
-        v-else :key="`${prov}-ok`"
+        v-else :key="`${p}-ok`"
         class="md:flex-col space-y-4"
         :class="isMultiCol ? 'md:w-1/4' : ''"
       >
         <template v-if="isMultiCol">
-          <p :key="providersMap.get(prov)" :style="getColour(prov)" class="boo-round">
-            {{ providersMap.get(prov) }} ({{ result.books === undefined ? 0 : result.books.length }})
+          <p :key="providers[p].name" :style="getColour(p)" class="boo-round">
+            {{ providers[p].name }} ({{ result.books === undefined ? 0 : result.books.length }})
           </p>
         </template>
         <div v-for="b in result.books" :key="b.url">
@@ -117,7 +92,7 @@ async function search() {
           </div>
           <a :href="b.url" target="_blank">
             {{ b.name }}
-            <span v-if="b.authors && b.authors.length" style="font-style: italic;">
+            <span v-if="b.authors && b.authors.length" italic>
               <br>
               {{ isMultiCol ? `by ${maxJoin(b.authors, 3)}` : `by ${b.authors.join(', ')}` }}
             </span>
