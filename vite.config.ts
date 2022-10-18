@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Markdown from 'vite-plugin-vue-markdown'
 import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
+import generateSitemap from 'vite-plugin-pages-sitemap'
 import Layouts from 'vite-plugin-vue-layouts'
 import Unocss from 'unocss/vite'
 import type { ManifestOptions } from 'vite-plugin-pwa'
@@ -61,7 +62,13 @@ export default defineConfig(({ mode }) => {
         extensions: ['vue', 'md'],
         dts: 'src/types/components.d.ts',
       }),
-      Pages({ extensions: ['vue', 'md'] }),
+      Pages({
+        extensions: ['vue', 'md'],
+        onRoutesGenerated: routes => generateSitemap({
+          routes,
+          hostname: 'https://boocat.org',
+        }),
+      }),
       Layouts(),
       Unocss(),
       PWA({

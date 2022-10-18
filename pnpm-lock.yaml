@@ -17,6 +17,7 @@ specifiers:
   unplugin-vue-components: ^0.22.8
   vite: ^3.1.8
   vite-plugin-pages: ^0.26.0
+  vite-plugin-pages-sitemap: ^1.4.0
   vite-plugin-pwa: ^0.13.1
   vite-plugin-vue-layouts: ^0.7.0
   vite-plugin-vue-markdown: ^0.22.1
@@ -46,6 +47,7 @@ devDependencies:
   unplugin-vue-components: 0.22.8_vue@3.2.41
   vite: 3.1.8
   vite-plugin-pages: 0.26.0_vite@3.1.8
+  vite-plugin-pages-sitemap: 1.4.0
   vite-plugin-pwa: 0.13.1_vite@3.1.8
   vite-plugin-vue-layouts: 0.7.0_nknaiyoma7qglenj4mb2pj2auq
   vite-plugin-vue-markdown: 0.22.1_vite@3.1.8
@@ -5170,6 +5172,10 @@ packages:
     dependencies:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
+    dev: true
+
+  /vite-plugin-pages-sitemap/1.4.0:
+    resolution: {integrity: sha512-8GlmNSeObvDVUdmgutfWnGBZGsn3Zb8IXCjRODFB0tOhQqAQPZRwXrFha6ZLjvF4DgVJI3sW2FfiXa1wFxJvmg==}
     dev: true
 
   /vite-plugin-pages/0.26.0_vite@3.1.8:
