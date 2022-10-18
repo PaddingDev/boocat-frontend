@@ -10,6 +10,7 @@ import Layouts from 'vite-plugin-vue-layouts'
 import Unocss from 'unocss/vite'
 import type { ManifestOptions } from 'vite-plugin-pwa'
 import { VitePWA as PWA } from 'vite-plugin-pwa'
+import { chunkSplitPlugin as ChunkSplit } from 'vite-plugin-chunk-split'
 
 const manifest: Partial<ManifestOptions> = {
   name: 'BooCat',
@@ -71,6 +72,7 @@ export default defineConfig(({ mode }) => {
       }),
       Layouts(),
       Unocss(),
+      ChunkSplit(),
       PWA({
         registerType: 'autoUpdate',
         injectRegister: 'auto',

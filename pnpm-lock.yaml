@@ -16,6 +16,7 @@ specifiers:
   unplugin-auto-import: ^0.11.2
   unplugin-vue-components: ^0.22.8
   vite: ^3.1.8
+  vite-plugin-chunk-split: ^0.4.1
   vite-plugin-pages: ^0.26.0
   vite-plugin-pages-sitemap: ^1.4.0
   vite-plugin-pwa: ^0.13.1
@@ -46,6 +47,7 @@ devDependencies:
   unplugin-auto-import: 0.11.2_@vueuse+core@9.3.1
   unplugin-vue-components: 0.22.8_vue@3.2.41
   vite: 3.1.8
+  vite-plugin-chunk-split: 0.4.1_vite@3.1.8
   vite-plugin-pages: 0.26.0_vite@3.1.8
   vite-plugin-pages-sitemap: 1.4.0
   vite-plugin-pwa: 0.13.1_vite@3.1.8
@@ -2592,6 +2594,10 @@ packages:
       is-set: 2.0.2
       is-string: 1.0.7
       isarray: 2.0.5
+    dev: true
+
+  /es-module-lexer/1.0.5:
+    resolution: {integrity: sha512-oxJ+R1DzAw6j4g1Lx70bIKgfoRCX67C51kH2Mx7J4bS7ZzWxkcivXskFspzgKHUj6JUwUTghQgUPy8zTp6mMBw==}
     dev: true
 
   /es-shim-unscopables/1.0.0:
@@ -5172,6 +5178,16 @@ packages:
     dependencies:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
+    dev: true
+
+  /vite-plugin-chunk-split/0.4.1_vite@3.1.8:
+    resolution: {integrity: sha512-/p9FFU1DCT5bjO8opwJ2MpmvbA9kVkfwDCaTiuYM2nLRTcdPJRQDOyAihskZS6vrcozAZOfWXkRaw1klAcey3A==}
+    peerDependencies:
+      vite: '>=2.0.0'
+    dependencies:
+      es-module-lexer: 1.0.5
+      magic-string: 0.26.7
+      vite: 3.1.8
     dev: true
 
   /vite-plugin-pages-sitemap/1.4.0:
