@@ -47,7 +47,7 @@ async function search() {
         type="search"
         @keydown.enter="search"
       >
-      <button class="bg-dark-800 text-light-500 rounded-md h-11 px-4" @click="search">
+      <button class="bg-dark-800 dark:bg-dark-400 text-light-500 rounded-md h-11 px-4" @click="search">
         Search
       </button>
     </div>
@@ -82,7 +82,7 @@ async function search() {
           </p>
         </template>
         <div v-for="b in result.books" :key="b.url">
-          <div class="md:(flex-row space-x-2)">
+          <div class="flex-row space-x-2">
             <span v-if="b.fileType" class="badge">
               {{ b.fileType }}
             </span>
